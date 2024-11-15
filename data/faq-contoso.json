@@ -1,0 +1,26 @@
+[  
+  {  
+    "question": "¿Qué es Waylet?",  
+    "answer": "Waylet es la app gratuita de Repsol enfocada al ahorro y que funciona como monedero virtual donde almacenar todas tus tarjetas de pago y fidelización. Con ella puedes comprar en tus marcas favoritas y en establecimientos asociados, y así acumular saldo que luego podrás canjear en próximas compras y hasta en tus facturas de luz, gas y solar."  
+  },  
+  {  
+    "question": "¿Qué es Repsol Vivit?",  
+    "answer": "Repsol Vivit es la app para los clientes de luz y gas de Repsol. Desde tu móvil, podrás ver cómo hacer un uso eficiente de la luz en tu hogar. En un solo clic, tendrás tu consumo de luz al detalle, la estimación de lo que consumen tus electrodomésticos y consejos de eficiencia energética. Pero eso no es todo, también podrás: Consultar y gestionar tus contratos, Ver la previsión de consumo de la factura, Cambiar la potencia de la luz, Ver y descargar tus facturas, Enviar la lectura de gas de tu contador para conocer el importe de tu factura antes de recibirla. Además, si tienes energía solar con Repsol, podrás ahorrar con la nueva funcionalidad de la app, la Batería Virtual. Los excedentes de energía solar que acumules se descontarán de tus siguientes facturas. En el caso de que quieras consultar y hacer tus gestiones de luz y gas en versión web, lo encontrarás en tu Área Cliente de Repsol."  
+  },  
+  {  
+    "question": "¿Qué beneficios tengo al registrarme en Waylet?",  
+    "answer": "Como nuevo usuario, desde el primer día de tu registro en la app, generarás saldo al pagar en los puntos de la red Waylet, en las recargas eléctricas en puntos públicos y en comercios adheridos (identificados en las fichas de la app con el símbolo (€), además de con tus compras a través del servicio de Tienda Waylet. También podrás beneficiarte de exclusivos descuentos en El Corte Inglés, en la sección Beneficios > Los que tienes > Descuentos Automáticos en El Corte Inglés. Además, también puedes conseguir descuentos en carburante con la compra de tarjetas regalo en las mejores marcas y a través de la promoción “Invita a un amigo”. *No todas las tarjetas admitidas en Waylet son compatibles con la Promoción de Bienvenida. Para más información, consulta las compatibilidades de tus tarjetas de pago y fidelización. **Salvo pagos con tarjeta RFID profesional. ***Los descuentos se aplican automáticamente al pagar con Waylet los productos ofertados en esta sección."  
+  },  
+  {  
+    "question": "¿Qué es Saldo Waylet?",  
+    "answer": "El saldo es el ahorro que generas con determinadas operaciones al pagar con Waylet y acumulas en la app para utilizarlo en futuros pagos."  
+  },  
+  {  
+    "question": "¿Dónde puedo utilizar el saldo Waylet?",  
+    "answer": "Con el saldo que acumulas pagando con Waylet puedes pagar todo esto: Repostajes, lavados y productos de tienda en las estaciones de servicio de Repsol, Recargas en puntos de recarga públicos de Repsol, Aparcamientos en el Servicio de Estacionamiento Regulado (SER), en zonas verde, azul y naranja, y directamente desde la app, sin necesidad de desplazarte hasta el parquímetro, Tarjetas regalo de grandes marcas, Productos y servicios en establecimientos asociados, Productos en la tienda online de repsol.es, Las energías que tengas con Repsol comprando cupones descuento para tus facturas de luz, gas y solar, pagando a través de Pide tu bombona (pagando con Open Waylet, la versión de Waylet para pagar en comercios electrónicos) y mediante Pide tu gasóleo (indicando que el pago será con Waylet)."
+  },
+  {
+    "question": "¿Qué son los planes Energías para ahorrar?",  
+    "answer": "Los Planes Energías para ahorrar es la última iniciativa de Repsol para que nuestros clientes, y los que todavía no lo son, puedan ahorrar conectando sus energías. Coche (1), Coche y Luz (2), Coche, Luz y Calefacción (3), y Coche, Luz, Calefacción y Solar (4), son los cuatro planes que están disponibles para todos los usuarios y están orientados a la contratación de uno o varios suministros del hogar: luz, calefacción y solar. Estos planes están sujetos al uso de Waylet, la app gratuita de Repsol, como medio de pago y todos ellos llevan asociados un ahorro en forma de saldo para canjear en repostajes, recargas y productos y servicios en establecimientos asociados."
+  }
+]

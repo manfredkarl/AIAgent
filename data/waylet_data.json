@@ -1,0 +1,119 @@
+[  
+  {  
+    "email": "angels@microsoft.com",
+    "nombre": "Angel Sevillano",
+    "saldo": "5,78€",
+    "cupones": [
+        {
+            "tipo": "Estaciones",
+            "descripcion": "20€ descuento en gasóleo calefacción a domicilio",
+            "fecha_expiracion": "31-12-2024"
+        },
+        {
+            "tipo": "Tiendas",
+            "descripcion": "4% de descuento en Galileo Farma",
+            "fecha_expiracion": "30-12-2024"
+        }   
+    ],
+    "beneficios": [
+        {
+            "comercio": "AliExpress",
+            "descripcion": "Artículos de electrónica, móviles y hogar al mejor precio",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "Miravia",
+            "descripcion": "Descubre las mejores marcas en moda, belleza y tecnología",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "PRIVÉ by Zalando",
+            "descripcion": "Renueva tu armario con Privé by Zalando",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "Amazon",
+            "descripcion": "Encuentra las mejores marcas en productos de moda y deporte",
+            "beneficio": "Te devolvemos hasta un 7% de tu compra en Saldo Waylet"
+        }
+    ]
+  },
+  {  
+    "email": "almudena.fernandez@microsoft.com",
+    "nombre": "Almudena Fernández",
+    "saldo": "45,18€",
+    "cupones": [
+        {
+            "tipo": "Estaciones",
+            "descripcion": "20€ descuento en gasóleo calefacción a domicilio",
+            "fecha_expiracion": "31-12-2024"
+        },
+        {
+            "tipo": "Tiendas",
+            "descripcion": "4% de descuento en Galileo Farma",
+            "fecha_expiracion": "30-12-2024"
+        }   
+    ],
+    "beneficios": [
+        {
+            "comercio": "AliExpress",
+            "descripcion": "Artículos de electrónica, móviles y hogar al mejor precio",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "Miravia",
+            "descripcion": "Descubre las mejores marcas en moda, belleza y tecnología",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "PRIVÉ by Zalando",
+            "descripcion": "Renueva tu armario con Privé by Zalando",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "Amazon",
+            "descripcion": "Encuentra las mejores marcas en productos de moda y deporte",
+            "beneficio": "Te devolvemos hasta un 7% de tu compra en Saldo Waylet"
+        }
+    ]
+  },
+  {  
+    "email": "sergiogon@microsoft.com",
+    "nombre": "Sergio González",
+    "saldo": "15,78€",
+    "cupones": [
+        {
+            "tipo": "Estaciones",
+            "descripcion": "20€ descuento en gasóleo calefacción a domicilio",
+            "fecha_expiracion": "31-12-2024"
+        },
+        {
+            "tipo": "Tiendas",
+            "descripcion": "4% de descuento en Galileo Farma",
+            "fecha_expiracion": "30-12-2024"
+        }   
+    ],
+    "beneficios": [
+        {
+            "comercio": "AliExpress",
+            "descripcion": "Artículos de electrónica, móviles y hogar al mejor precio",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "Miravia",
+            "descripcion": "Descubre las mejores marcas en moda, belleza y tecnología",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "PRIVÉ by Zalando",
+            "descripcion": "Renueva tu armario con Privé by Zalando",
+            "beneficio": "Te devolvemos hasta un 3% de tu compra en Saldo Waylet"
+        },
+        {
+            "comercio": "Amazon",
+            "descripcion": "Encuentra las mejores marcas en productos de moda y deporte",
+            "beneficio": "Te devolvemos hasta un 7% de tu compra en Saldo Waylet"
+        }
+    ]
+  }
+]
