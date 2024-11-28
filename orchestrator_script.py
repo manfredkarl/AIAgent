@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from openai import AzureOpenAI
 
 import helpers as helpers
-from demo_agents import OrchestratorAgent, TimeAgent, GetSmartletDataAgent, OrderAgent, RagAgent, BillingAgent
+from luxury_agents import OrchestratorAgent, TimeAgent, GetSmartletDataAgent, OrderAgent, RagAgent, BillingAgent
 
 
 logger = helpers.configure_logger("orchestrator_script")
