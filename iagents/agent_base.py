@@ -9,6 +9,7 @@ class LLMBaseAgent:
     base_prompt = "This is the base prompt for the self."
 
     back_to_orchestrator_prompt = """
+    Respond always in the language of the user input. If the user opens the conversation in English, respond in English
     You are a specialized worker agent orchestrated by another orchestrator self.
     Once you provide a response, ask the user if the user has any other questions.
     If the user is asking a question that is not within your domain. You should respond with a message to the orchestrator.

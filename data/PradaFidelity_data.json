@@ -1,0 +1,75 @@
+[
+    {  
+      "email": "angels@microsoft.com",
+      "name": "Angel Sevillano",
+      "balance": "50.78€",
+      "coupons": [
+          {
+              "type": "Boutique",
+              "description": "200€ discount on your next purchase at Prada",
+              "expiration_date": "31-12-2024"
+          },
+          {
+              "type": "Accessories",
+              "description": "10% discount on exclusive Prada accessories",
+              "expiration_date": "30-12-2024"
+          }   
+      ],
+      "benefits": [
+          {
+              "store": "Prada",
+              "description": "Latest collections of luxury fashion and accessories",
+              "benefit": "Earn points equivalent to 5% of your purchase"
+          }
+      ]
+    },
+    {  
+      "email": "almudena.fernandez@microsoft.com",
+      "name": "Almudena Fernández",
+      "balance": "450.18€",
+      "coupons": [
+          {
+              "type": "Boutique",
+              "description": "15% discount on your purchase of exclusive Prada items",
+              "expiration_date": "31-12-2024"
+          },
+          {
+              "type": "Shoes",
+              "description": "20% discount on Prada shoes",
+              "expiration_date": "30-12-2024"
+          }   
+      ],
+      "benefits": [
+          {
+              "store": "Prada",
+              "description": "Latest collections of luxury fashion and accessories",
+              "benefit": "Earn points equivalent to 5% of your purchase"
+          }
+      ]
+    },
+    {  
+      "email": "sergiogon@microsoft.com",
+      "name": "Sergio González",
+      "balance": "150.78€",
+      "coupons": [
+          {
+              "type": "Boutique",
+              "description": "Free shipping on all Prada purchases",
+              "expiration_date": "31-12-2024"
+          },
+          {
+              "type": "Exclusive",
+              "description": "Access to pre-sales and exclusive collections",
+              "expiration_date": "30-12-2024"
+          }   
+      ],
+      "benefits": [
+          {
+              "store": "Prada",
+              "description": "Latest collections of luxury fashion and accessories",
+              "benefit": "Earn points equivalent to 5% of your purchase"
+          }
+      ]
+    }
+  ]
+  
