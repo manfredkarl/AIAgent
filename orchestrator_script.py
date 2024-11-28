@@ -7,6 +7,16 @@ from openai import AzureOpenAI
 import helpers as helpers
 from luxury_agents import OrchestratorAgent, TimeAgent, GetSmartletDataAgent, OrderAgent, RagAgent, BillingAgent
 
+# CONSTANTS
+BOT_ICON = 'https://865aadc87c3454520411-3632423099c3393f1a8bc0dce61fb95f.ssl.cf1.rackcdn.com/contoso-logo-transparent.png'
+APP_TITLE = 'Demo: Asistente Multi-Agente'
+CHAT_INPUT_PLACEHOLDER = "Su mensaje: "
+CUSTOMER_LOGO = 'https://865aadc87c3454520411-3632423099c3393f1a8bc0dce61fb95f.ssl.cf1.rackcdn.com/contoso-logo-transparent.png'
+SPINNER_MESSAGE = "Preparando respuesta..."
+USER_ICON = 'https://static.vecteezy.com/system/resources/previews/014/194/215/non_2x/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg'
+
+CUSTOMER_LOGO="https://logo.com/image-cdn/images/kts928pd/production/5be7f05ad50b4254e440898461e4ad1026a11723-900x592.png?w=1080&q=80"
+BOT_ICON = CUSTOMER_LOGO
 
 logger = helpers.configure_logger("orchestrator_script")
 
@@ -26,6 +36,7 @@ llm_config = {
 }
 
 # Declare the agents and functions
+############################# CHANGE HERE FOR CUSTOMIZATION
 time_agent = TimeAgent("time_agent", llm_config=llm_config)
 get_smartlet_data_agent = GetSmartletDataAgent("get_smartlet_data_agent", llm_config=llm_config)
 order_agent = OrderAgent("customer_order_agent", llm_config=llm_config)
@@ -34,17 +45,10 @@ billing_agent = BillingAgent("billing_agent", llm_config=llm_config)
 
 worker_agents_list = [time_agent, get_smartlet_data_agent, order_agent, rag_agent, billing_agent]
 orchestrator_agent = OrchestratorAgent("orchestrator_agent", worker_agents_list, llm_config=llm_config)
+########################################### WHAT GOES BELOW SHALL NOT BE CHANGED
+
 
 worker_agents = {agent.get_agent_name(): agent for agent in worker_agents_list}
-
-
-# CONSTANTS
-BOT_ICON = 'https://865aadc87c3454520411-3632423099c3393f1a8bc0dce61fb95f.ssl.cf1.rackcdn.com/contoso-logo-transparent.png'
-APP_TITLE = 'Demo: Asistente Multi-Agente'
-CHAT_INPUT_PLACEHOLDER = "Su mensaje: "
-CUSTOMER_LOGO = 'https://865aadc87c3454520411-3632423099c3393f1a8bc0dce61fb95f.ssl.cf1.rackcdn.com/contoso-logo-transparent.png'
-SPINNER_MESSAGE = "Preparando respuesta..."
-USER_ICON = 'https://static.vecteezy.com/system/resources/previews/014/194/215/non_2x/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg'
 
 
 # Función para mostrar mensajes en forma de bocadillo
