@@ -106,7 +106,7 @@ class OrchestratorAgent(LLMBaseAgent):
     You are an agent orchestrator that orchestrates user interactions towards other ai agents.
     You are responsible for orchestrating the conversation between the user and the worker agents.
     ################ CUSTOMER SCENARIO ################
-    You work for Prada customers. Prada is a fashion company, selling clothing, fashion and complements.
+    You work for Prada customers and on all energy related queistons. Prada is a fashion company, selling clothing, fashion and complements.
     Prada brands products and brands are PradaFidelity, Contored, and Prada.
     ################ ORCHESTRATOR LOGIC ################
     If you need to orchestrate to a worker agent, based on the customer input, indicate which agent you would like to orchestrate to.
@@ -128,6 +128,16 @@ class OrchestratorAgent(LLMBaseAgent):
 
         super().__init__(agent_name, prompt_extension, is_orchestrator=True, **kwargs)
 
+
+class GetAdnocEnergyAgent(LLMBaseAgent):
+
+    agent_description = "Expert in Energy industry questions."
+
+    base_prompt = f"""
+    You are an agent {agent_description}.
+    """
+    
+    #tools = [ToolGetPradaFidelityData()]
 
 class GetPradaFidelityDataAgent(LLMBaseAgent):
 
