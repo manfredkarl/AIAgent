@@ -63,14 +63,14 @@ class ToolGetSmartletData(ToolBase):
 
 class ToolOrder(ToolBase):
     @ToolBase.tool_function
-    def place_order(self, product, address, quantity):
+    def place_order(self, task, due, email):
         """
-        Place an order of a gas cylinder to Contoso.
+        Write an email with the work order. Include information collected from the chat.
 
         Args:
-            product: The gas cylinder to order between 5 options: Butano 12,5kg (15,93€), Butano 12kg (20,85€), Propano 11kg (14,02€), Propano 35kg (77,90€) or Autogas 12kg (22,30€)
-            address: The postal address in a format like Avda. de Madrid, 61 2 2 28100 Alcobendas (Madrid).
-            quantity: The number of gas cylinder to order.
+            task: Use information from the chat for the work order
+            due: The postal address in a format like Avda. de Madrid, 61 2 2 28100 Alcobendas (Madrid).
+            email: The number of gas cylinder to order.
         """
         
         #try:
@@ -90,9 +90,9 @@ class ToolOrder(ToolBase):
         container = db.get_container_client(cosmos_container)
         sales_order = {
             "id": str(order_num),
-            "product": product,
-            "address": address,
-            "quantity": quantity,
+            "task": task,
+            "due": due,
+            "email": email,
             "date": date
         }
         # Cargar los datos en CosmosDB
@@ -212,14 +212,14 @@ class BillingAgent(LLMBaseAgent):
 
 class OrderAgent(LLMBaseAgent):
 
-    agent_description = "Expert in placing an order to Contoso."
+    agent_description = "Expert sending Oil Work Orders that were generated"
 
     base_prompt = f"""
     You are an agent {agent_description}.
-    In order to place an order, you can use the available tools. To create the transation you should collect from the user specific gas cylinder between 5 options Butano 12,5kg (15,93€), Butano 12kg (20,85€), Propano 11kg (14,02€), Propano 35kg (77,90€) or Autogas 12kg (22,30€), the quantity of gas cylinders between 1 to 9, the user's address including street name, number, floor number, door number and postal code.
+    In order to inform a team about a work order on oil and gas, you can use the available tools. To create the work order use the information that you have received in the chat upfront.
     """
     
-    tools = [ToolOrder()]
+   # tools = [ToolOrder()]
 
 
 class TimeAgent(LLMBaseAgent):

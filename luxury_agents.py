@@ -6,6 +6,7 @@ from openai import AzureOpenAI
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizedQuery
+import requests
 
 from iagents import LLMBaseAgent
 from iagents.agent_tools import ToolBase
@@ -101,63 +102,171 @@ class ToolRag(ToolBase):
         return answer_for_prompt
 
 
+class ToolTriggerLogicApp(ToolBase):
+    @ToolBase.tool_function
+    def trigger_logic_app(self, email_content):
+        """
+        Send the last text in order to send a notification email.
+
+        Args:
+            email_content: The content of the email to be sent in markdown format. 
+        """
+        
+        logic_app_url = os.getenv("LOGIC_APP_URL")
+        #logic_app_url = "https://prod-17.swedencentral.logic.azure.com:443/workflows/8514ea516d73452fb97a78f93ea25e4d/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=VDNrVK5QtjQgxcrMA-mogIxQ769iAIAgl8BB_qnTqlY"
+        if not logic_app_url:
+            raise ValueError("LOGIC_APP_URL is not defined in the environment variables.")
+        
+        response = requests.post(logic_app_url, json=email_content)
+        if response.status_code in ["200", "202"]:
+            raise Exception(f"Failed to trigger Logic App: {response.status_code} {response.text}")
+        else:
+            return "Email has been successfully sent"
+ 
+
 class OrchestratorAgent(LLMBaseAgent):
     base_prompt = """
     You are an agent orchestrator that orchestrates user interactions towards other ai agents.
     You are responsible for orchestrating the conversation between the user and the worker agents.
     ################ CUSTOMER SCENARIO ################
-    You work for Prada customers and on all energy related queistons. Prada is a fashion company, selling clothing, fashion and complements.
-    Prada brands products and brands are PradaFidelity, Contored, and Prada.
+    You work for Siemens, a global leader in industrial manufacturing and supply chain solutions. 
+    Your primary focus is optimizing logistics, improving supplier performance, and enhancing production efficiency.
     ################ ORCHESTRATOR LOGIC ################
     If you need to orchestrate to a worker agent, based on the customer input, indicate which agent you would like to orchestrate to.
     If the user does not provide enough information, ask the user to rephrase the question or interact with the user until it gives a clear answer.
     You will be given a list of agents to choose from. Each agent entry in the list will consist of a name and a description.
     As an example:
-    - weather_agent: This agent provides weather
-    - stock_agent: This agent provides stock information
+    - demand_forecast_agent: Forecasts demand and recommends production adjustments.
+    - supply_chain_risk_agent: Analyzes supply chain risks.
+    - production_optimization_agent: Suggests efficiency improvements.
+    - energy_efficiency_agent: Optimizes energy consumption.
+    - compliance_agent: Ensures regulatory adherence.    
     In order to indicate the output agent. Generate output like "next_agent=agent_name"
     For example, if the user asks about the weather, you can generate "next_agent=weather_agent"
     Only use the agent names provided in the list below. If no agent is available, say you are sorry and ask the user to rephrase the question.
     You will orchestrate the conversation based on the user's message and only the following agents and agents description: \n
     """
-    
+   
     def __init__(self, agent_name: str, worker_agent_list: list, **kwargs):
         prompt_extension = ""
-        for worker_agent in  worker_agent_list:
+        for worker_agent in worker_agent_list:
             prompt_extension += f"- Agent Name == {worker_agent.get_agent_name()}, Agent Purpose Description == {worker_agent.get_agent_description()}\n"
 
         super().__init__(agent_name, prompt_extension, is_orchestrator=True, **kwargs)
 
 
-class GetAdnocEnergyAgent(LLMBaseAgent):
-
-    agent_description = "Expert in Energy industry questions."
-
+class GetDemandForecastAgent(LLMBaseAgent):
+    agent_description = "Expert in demand forecasting and supply chain planning for Siemens’ manufacturing operations."
+    
     base_prompt = f"""
     You are an agent {agent_description}.
+    You analyze customer demand patterns, predict inventory needs, and suggest production adjustments.
+    Feel free to make data up and respond in a table if appropriate.
+    Example insights:
+    - Product X demand is expected to increase by 15% next quarter due to new EU regulations.
+    - Recommend increasing production output by 10% to meet forecasted demand.
     """
+    tools = [ToolTriggerLogicApp()]
+
+class SupplyChainRiskAgent(LLMBaseAgent):
+    agent_description = "Expert in supply chain risk analysis and mitigation."
     
-    #tools = [ToolGetPradaFidelityData()]
-
-class GetPradaFidelityDataAgent(LLMBaseAgent):
-
-    agent_description = "Expert in PradaFidelity customer data retrieval. You don't provide generic PradaFidelity information."
-
     base_prompt = f"""
     You are an agent {agent_description}.
-    In order to get the balance, cupons and benefits of an user of a PradaFidelity card, you can use the available tools. You should collect from the user the email and the type of data to retrieve: balance, cupons or benefits.
+    You assess risks such as geopolitical instability, weather disruptions, and supplier reliability.
+    Feel free to make data up and respond in a table if appropriate.
+    Example insights:
+    - Factory closures in China may impact semiconductor supply.
+    - Recommend diversifying suppliers for Component Y to mitigate risk.
     """
+    tools = [ToolTriggerLogicApp()]
+
+class ProductionOptimizationAgent(LLMBaseAgent):
+    agent_description = "Expert in optimizing production processes to maximize efficiency and reduce costs."
     
-    tools = [ToolGetPradaFidelityData()]
+    base_prompt = f"""
+    You are an agent {agent_description}.
+    You analyze production data and suggest improvements.
+    Feel free to make data up and respond in a table if appropriate.
+    Example insights:
+    - Reducing machine idle time by 8% can increase overall efficiency.
+    - Implementing predictive maintenance on critical machines can reduce downtime.
+    You do not answer questions about sustainability and suppliers.
+    """
+    tools = [ToolTriggerLogicApp()]
+
+class EnergyEfficiencyAgent(LLMBaseAgent):
+    agent_description = "Expert in energy efficiency for manufacturing operations."
+    
+    base_prompt = f"""
+    You are an agent {agent_description}.
+    You analyze energy consumption and suggest cost-saving strategies.
+    Feel free to make data up and respond in a table if appropriate.
+    Example insights:
+    - Switching to LED lighting can reduce factory energy costs by 12%.
+    - Recommend optimizing HVAC system scheduling to lower power consumption.
+    """
+    tools = [ToolTriggerLogicApp()]
+
+class ComplianceAgent(LLMBaseAgent):
+    agent_description = "Expert in regulatory compliance for Siemens' operations."
+    
+    base_prompt = f"""
+    You are an agent {agent_description}.
+    You ensure adherence to industry regulations and standards.
+    Feel free to make data up and respond in a table if appropriate.
+    Example insights:
+    - Product Z meets new EU environmental compliance standards.
+    - Recommend updating documentation to align with ISO 9001.
+    """
+    tools = [ToolTriggerLogicApp()]
+
+class SustainabilityAgent(LLMBaseAgent):
+    agent_description = "Expert in sustainability practices for Siemens' operations."
+    
+    base_prompt = f"""
+    You are an agent {agent_description}.
+    You provide insights on reducing carbon footprints, sustainable sourcing, and regulatory sustainability compliance.
+    Feel free to make data up and respond in a table if appropriate.
+    Example insights:
+    - Implementing circular economy principles can reduce waste by 20%.
+    - Switching to renewable energy sources can lower carbon emissions by 30%.
+    You do not answer questions about production cost and suppliers.
+    """
+    tools = [ToolTriggerLogicApp()]
 
 
 class RagAgent(LLMBaseAgent):
-
-    agent_description = "Expert in providing generic information about Prada."
+    agent_description = "You generate reports on supply chain performance, cost efficiency, and demand forecasting for Siemens."
 
     base_prompt = f"""
-    You are an agent {agent_description}.You have access to an Azure Cognitive Search index with this information. 
-    You are designed to be an interactive assistant, so you can ask users clarifying questions to help them find the information. It's better to give more detailed queries to the search index rather than vague one.
+    You are an agent {agent_description}.
+    You summarize discussions into detailed reports. Feel free to make numbers upa and answer in a table (if suitable).
+    You only answer questions in your domain.
+    Example report summary:
+    - Supplier performance declining by 10% due to shipping delays.
+    - Inventory levels optimal, but distribution needs to be balanced across warehouses.
+    - Cost-saving potential of 8% identified in procurement strategy.
     """
-    
-    tools = [ToolRag()]
+    tools = [ToolTriggerLogicApp()]
+
+
+def main():
+
+    # Example usage of the `trigger_logic_app` method
+    # Replace 'Your email content here' with the content you want to send
+    email_content = "Hello my friend"
+    # Initialize the ToolTriggerLogicApp
+    trigger_logic_app_tool = ToolTriggerLogicApp()
+    # Call the `trigger_logic_app` method
+    try:
+        result = trigger_logic_app_tool.trigger_logic_app(email_content=email_content)
+        print(result)
+    except Exception as e:
+        print(f"Error occurred: {e}")
+# Ensure the script can be executed
+if __name__ == "__main__":
+    main()
+
+ 
+   
